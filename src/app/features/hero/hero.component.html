@@ -1,0 +1,154 @@
+<section id="home" class="hero-section">
+  <!-- Glowing Background Ambience -->
+  <div class="glow-orb orb-purple"></div>
+  <div class="glow-orb orb-blue"></div>
+
+  <div class="container hero-container">
+    <!-- Left Hero Column: Content & Actions -->
+    <div class="hero-content">
+      <div class="greeting-badge">
+        <span class="pulse-indicator"></span>
+        <span class="greeting-text">{{ personalInfo.greeting }}</span>
+      </div>
+
+      <h1 class="hero-name">
+        <span class="name-gradient">{{ personalInfo.name }}</span>
+      </h1>
+
+      <!-- Dynamic Typing Subtitle -->
+      <div class="typing-container">
+        <span class="typing-prefix">I am a </span>
+        <span class="typing-text">{{ currentRoleText() }}</span>
+        <span class="typing-cursor">|</span>
+      </div>
+
+      <p class="hero-intro">
+        {{ personalInfo.shortIntro }}
+      </p>
+
+      <!-- Primary CTA Actions -->
+      <div class="hero-actions">
+        <button (click)="scrollToProjects()" class="btn btn-primary">
+          <span>Explore My Work</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+
+        <button (click)="scrollToResume()" class="btn btn-secondary">
+          <span>Download Resume</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Social Channels -->
+      <div class="hero-socials">
+        <span class="social-label">Connect:</span>
+        <a [href]="personalInfo.contact.github" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub Profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+            <path d="M9 18c-4.51 2-5-2-7-2"/>
+          </svg>
+        </a>
+        <a [href]="personalInfo.contact.linkedin" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn Profile">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a [href]="'mailto:' + personalInfo.contact.email" class="social-icon" aria-label="Email Contact">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Hero Column: Profile Avatar & Floating Badges -->
+    <div class="hero-visual">
+      <div class="avatar-stage">
+        <!-- Ambient halo ring -->
+        <div class="halo-ring"></div>
+        <div class="halo-ring ring-secondary"></div>
+
+        <!-- Frame / Image container -->
+        <div class="avatar-frame">
+          <div class="avatar-graphic">
+            <!-- Profile Image with automatic fallback to stylized developer avatar -->
+            <img 
+              src="assets/images/profile.jpg" 
+              alt="Sakthivel S"
+              class="avatar-photo"
+              #profileImg
+              (error)="profileImg.style.display='none'; fallbackAvatar.style.display='flex'">
+
+            <div class="developer-avatar-svg" #fallbackAvatar style="display: none;">
+              <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg" class="avatar-illustration">
+                <defs>
+                  <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#9d4edd" />
+                    <stop offset="100%" stop-color="#3b82f6" />
+                  </linearGradient>
+                  <linearGradient id="hoodieGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#1e293b" />
+                    <stop offset="100%" stop-color="#0f172a" />
+                  </linearGradient>
+                </defs>
+                <circle cx="120" cy="120" r="110" fill="#0d111c" stroke="url(#avatarGrad)" stroke-width="3"/>
+                <path d="M50 215 C50 165, 80 150, 120 150 C160 150, 190 165, 190 215 Z" fill="url(#hoodieGrad)"/>
+                <circle cx="120" cy="98" r="44" fill="#334155"/>
+                <path d="M80 92 C80 62, 100 50, 120 50 C140 50, 160 62, 160 92 Z" fill="#1e293b"/>
+                <rect x="94" y="92" width="22" height="13" rx="3" stroke="#60a5fa" stroke-width="2.5" fill="rgba(96,165,250,0.15)"/>
+                <rect x="124" y="92" width="22" height="13" rx="3" stroke="#60a5fa" stroke-width="2.5" fill="rgba(96,165,250,0.15)"/>
+                <line x1="116" y1="98" x2="124" y2="98" stroke="#60a5fa" stroke-width="2.5"/>
+                <text x="120" y="195" font-family="'JetBrains Mono', monospace" font-size="15" font-weight="700" fill="#a855f7" text-anchor="middle">&lt;DEV /&gt;</text>
+              </svg>
+            </div>
+            <div class="avatar-overlay">
+              <span class="status-badge">
+                <span class="status-dot"></span> Available for Opportunities
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Interactive Badges -->
+        <div class="floating-badge badge-angular">
+          <span class="badge-dot" style="background: #dd0031;"></span>
+          <span class="badge-text">Angular</span>
+        </div>
+
+        <div class="floating-badge badge-react">
+          <span class="badge-dot" style="background: #61dafb;"></span>
+          <span class="badge-text">React</span>
+        </div>
+
+        <div class="floating-badge badge-node">
+          <span class="badge-dot" style="background: #22c55e;"></span>
+          <span class="badge-text">Node.js</span>
+        </div>
+
+        <div class="floating-badge badge-python">
+          <span class="badge-dot" style="background: #eab308;"></span>
+          <span class="badge-text">Python</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="scroll-indicator" (click)="scrollToProjects()">
+    <span class="scroll-text">Scroll to explore</span>
+    <div class="scroll-mouse">
+      <div class="scroll-wheel"></div>
+    </div>
+  </div>
+</section>
+

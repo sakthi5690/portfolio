@@ -1,0 +1,90 @@
+<header class="navbar-wrapper" [class.scrolled]="isScrolled()">
+  <nav class="nav-container container">
+    <!-- Brand / Logo -->
+    <a (click)="scrollToSection('home')" class="brand-logo" tabindex="0">
+      <span class="logo-accent">&lt;</span>
+      <span class="logo-name">SAKTHIVEL</span>
+      <span class="logo-dot">.</span>
+      <span class="logo-accent">/&gt;</span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <ul class="nav-links">
+      <li *ngFor="let link of navLinks">
+        <a 
+          (click)="scrollToSection(link.id)"
+          [class.active]="activeSection() === link.id"
+          class="nav-item">
+          {{ link.label }}
+          <span class="active-pill" *ngIf="activeSection() === link.id"></span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Resume CTA Action -->
+    <div class="nav-actions">
+      <button (click)="onDownloadResumeClick()" class="btn-resume-cta">
+        <span>Resume</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </button>
+
+      <!-- Mobile Hamburger Button -->
+      <button 
+        type="button" 
+        class="hamburger-btn" 
+        [class.open]="isMobileMenuOpen()" 
+        (click)="toggleMobileMenu()" 
+        aria-label="Toggle Navigation Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" [class.show]="isMobileMenuOpen()">
+    <div class="mobile-menu-backdrop" (click)="closeMobileMenu()"></div>
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-header">
+        <span class="brand-logo small">
+          <span class="logo-name">SAKTHIVEL</span>
+          <span class="logo-dot">.</span>
+        </span>
+        <button class="close-btn" (click)="closeMobileMenu()" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="mobile-nav-links">
+        <li *ngFor="let link of navLinks">
+          <a 
+            (click)="scrollToSection(link.id)"
+            [class.active]="activeSection() === link.id"
+            class="mobile-nav-item">
+            {{ link.label }}
+          </a>
+        </li>
+      </ul>
+
+      <div class="mobile-menu-footer">
+        <button (click)="onDownloadResumeClick()" class="btn btn-primary" style="width: 100%;">
+          <span>View Resume</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
